@@ -20,15 +20,12 @@ import './task/index'
 // If you prefer using a mnemonic, set a MNEMONIC environment variable
 // to a valid mnemonic
 const MNEMONIC = process.env.MNEMONIC
-
-// If you prefer to be authenticated using a private key, set a PRIVATE_KEY environment variable
 const PRIVATE_KEY = process.env.PRIVATE_KEY
 
-const accounts: HttpNetworkAccountsUserConfig | undefined = MNEMONIC
-    ? { mnemonic: MNEMONIC }
-    : PRIVATE_KEY
-      ? [PRIVATE_KEY]
-      : undefined
+// If you prefer to be authenticated using a private key, set a PRIVATE_KEY environment variable
+const privateKeyAccounts = PRIVATE_KEY ? [PRIVATE_KEY] : undefined
+
+const accounts: HttpNetworkAccountsUserConfig | undefined = MNEMONIC ? { mnemonic: MNEMONIC } : privateKeyAccounts
 
 if (accounts == null) {
     console.warn(
@@ -64,6 +61,19 @@ const config: HardhatUserConfig = {
             url: process.env.RPC_URL_ROOTSTOCK_TESTNET || 'https://public-node.testnet.rsk.co',
             accounts,
         },
+        'bsc-testnet': {
+            eid: EndpointId.BSC_V2_TESTNET,
+            url: process.env.RPC_BSCTESTNET_URL || 'https://data-seed-prebsc-1-s1.binance.org:8545',
+            chainId: 97,
+            accounts,
+        },
+        'polygon-amoy': {
+            eid: EndpointId.AMOY_V2_TESTNET,
+            url: process.env.RPC_URL_MATIC_TESNET || 'https://rpc-amoy.polygon.technology',
+            chainId: 80002,
+            accounts,
+            // gasPrice: 25000000000,
+        },
         hardhat: {
             // Need this for testing because TestHelperOz5.sol is exceeding the compiled contract size limit
             allowUnlimitedContractSize: true,
@@ -78,6 +88,9 @@ const config: HardhatUserConfig = {
         apiKey: {
             sepolia: process.env.ETHERSCAN_API_KEY || '',
             'rootstock-testnet': 'API_KEY',
+            // Jaringan baru yang ditambahkan
+            polygonAmoy: process.env.POLYGONSCAN_API_KEY || '',
+            bscTestnet: process.env.BSCSCAN_API_KEY || '',
         },
         customChains: [
             {

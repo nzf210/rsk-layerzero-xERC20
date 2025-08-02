@@ -31,6 +31,13 @@ const deploy: DeployFunction = async (hre) => {
     //     eid: EndpointId.AVALANCHE_V2_TESTNET
     //   }
     // }
+    /**
+     * 
+    ## BSC 0x6EDCE65403992e310A62460808c4b910D972f10f
+    ## SEPOLIA 0x6EDCE65403992e310A62460808c4b910D972f10f
+    ## AMOY 0x6EDCE65403992e310A62460808c4b910D972f10f
+    */
+
     const endpointV2Deployment = await hre.deployments.get('EndpointV2')
 
     const { address } = await deploy(contractName, {
