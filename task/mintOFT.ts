@@ -91,13 +91,10 @@ task('lz:oft:mint', 'Mint OFT tokens on a specified network')
             return receipt
         } catch (error) {
             console.error(`Error-: ${getErrorMessage(error)}`)
-
             // Log error data if available
-
             if (hasData(error)) {
                 console.error(`Contract revert data: error.data`)
             }
-
             return null
         }
     })

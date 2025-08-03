@@ -3,12 +3,12 @@
 // To make use of automatic environment setup:
 // - Duplicate .env.example file and name it .env
 // - Fill in the environment variables
-require('dotenv/config')
+import 'dotenv/config'
 
-require('hardhat-deploy')
-require('hardhat-contract-sizer')
-require('@nomiclabs/hardhat-ethers')
-require('@nomiclabs/hardhat-etherscan')
+import 'hardhat-deploy'
+import 'hardhat-contract-sizer'
+import '@nomiclabs/hardhat-ethers'
+import '@nomiclabs/hardhat-etherscan'
 // import '@nomicfoundation/hardhat-toolbox'
 import { HardhatUserConfig, HttpNetworkAccountsUserConfig } from 'hardhat/types'
 
